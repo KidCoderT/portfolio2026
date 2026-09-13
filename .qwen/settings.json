@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(www.craftz.dog)",
+      "WebFetch(github.com)"
+    ]
+  },
+  "$version": 4
+}
