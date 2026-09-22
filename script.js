@@ -1,39 +1,20 @@
-// Highlight the current page's nav link based on the URL path.
+// Light / dark toggle. The inline <head> script already set data-theme before
+// first paint; this only flips it and persists the choice.
 (function () {
-  const current = decodeURIComponent(location.pathname.split('/').pop() || 'index.html');
-  document.querySelectorAll('.nav__link').forEach(function (link) {
-    if (link.getAttribute('href') === current) link.classList.add('is-active');
-  });
-})();
-
-// Light / dark theme toggle. Persists the choice in localStorage and falls back
-// to the OS color-scheme preference on the first visit.
-(function () {
-  var STORAGE_KEY = 'theme';
   var root = document.documentElement;
   var toggle = document.getElementById('theme-toggle');
+  if (!toggle) return;
 
-  function preferred() {
-    var stored = null;
-    try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
-    if (stored === 'light' || stored === 'dark') return stored;
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  function label() {
+    toggle.setAttribute('aria-label', root.getAttribute('data-theme') === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
   }
 
-  function apply(theme) {
-    root.setAttribute('data-theme', theme);
-    if (toggle) {
-      toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-    }
-  }
+  toggle.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
 
-  if (toggle) {
-    toggle.addEventListener('click', function () {
-      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
-      apply(next);
-    });
-  }
-
-  apply(preferred());
+  label();
 })();

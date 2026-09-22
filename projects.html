@@ -4,15 +4,18 @@
     <meta charset="UTF-8" />
     <script>
       (function () {
-        try {
-          var t = localStorage.getItem('theme');
-          if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
-        } catch (e) {}
+        var t = null;
+        try { t = localStorage.getItem('theme'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
       })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tejas — Projects</title>
-    <meta name="description" content="A selection of projects built by Tejas, with live demos and source." />
+    <meta name="description" content="Projects by Tejas: a Telegram expense tracker, a clinical ML predictor, a Windows battery utility, a vision-controlled robot car, and more." />
+    <meta property="og:title" content="Tejas — Projects" />
+    <meta property="og:description" content="A Telegram expense tracker, a clinical ML predictor, a Windows battery utility, a vision-controlled robot car, and more." />
+    <meta property="og:image" content="https://github.com/KidCoderT.png" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='50' fill='%23202023'/><text x='50' y='72' font-size='64' text-anchor='middle' fill='%236ee7a0' font-family='sans-serif'>T</text></svg>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,13 +36,11 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
           </a>
           <a class="nav__social" href="https://www.linkedin.com/in/tejas-sunil/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
-            </svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
           </a>
           <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark mode">
             <svg class="icon--sun" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></g></svg>
-            <svg class="icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            </svg>
+            <svg class="icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           </button>
         </nav>
       </div>
@@ -48,60 +49,105 @@
     <main class="container">
       <section class="page-head">
         <h1>Projects</h1>
-        <p>A few of the things I've built. More coming soon.</p>
+        <p>Three you can use today, and three you can read on GitHub.</p>
       </section>
 
-      <div class="projects__grid">
-        <article class="card">
-          <div class="card__top">
-            <h3 class="card__name">Biryani Battery Reminder</h3>
-            <span class="tag">Python</span>
-          </div>
-          <p class="card__desc">A Windows utility that monitors and optimizes laptop battery health — emoji-driven alerts, automatic power-plan switching, and a health dashboard.</p>
-          <div class="card__actions">
-            <a class="btn btn--demo" href="https://biryani-battery-reminder.vercel.app/" target="_blank" rel="noopener noreferrer">Demo</a>
-            <a class="btn btn--source" href="https://github.com/KidCoderT/biryani-battery-reminder" target="_blank" rel="noopener noreferrer">Source</a>
-          </div>
-        </article>
+      <section class="section">
+        <h2>Live</h2>
+        <div class="projects__grid">
+          <article class="card">
+            <img class="card__shot" src="assets/beancounter.png" alt="BeanCounter landing page" width="1280" height="800" loading="lazy" />
+            <div class="card__body">
+              <h3 class="card__name">BeanCounter</h3>
+              <p class="card__desc">A Telegram bot that logs an expense in the time it takes to type "purse 5.2". Regex handles about 95% of messages with no API call; ambiguous ones like "5 in purse and 20 from credit" go to Amazon Nova Micro on Bedrock. Wallets answer to any nickname you give them, success is a single 👍 reaction, and the React dashboard signs you in by verifying Telegram's initData signature, so there is no login.</p>
+              <div class="tags">
+                <span class="tag">FastAPI</span><span class="tag">python-telegram-bot</span><span class="tag">React</span><span class="tag">SQLite</span><span class="tag">AWS Bedrock</span><span class="tag">Docker</span>
+              </div>
+              <div class="card__actions">
+                <a class="btn btn--demo" href="https://beancounterbot.vercel.app/" target="_blank" rel="noopener noreferrer">Demo</a>
+                <a class="btn btn--source" href="https://github.com/KidCoderT/beancounter" target="_blank" rel="noopener noreferrer">Source</a>
+              </div>
+            </div>
+          </article>
 
-        <article class="card">
-          <div class="card__top">
-            <h3 class="card__name">Diabetes Risk Predictor</h3>
-            <span class="tag">Python · Next.js</span>
-          </div>
-          <p class="card__desc">A machine-learning web app that predicts your diabetes risk — a FastAPI backend trained on the diabetes health-indicators dataset, fronted by an animated Next.js interface.</p>
-          <div class="card__actions">
-            <a class="btn btn--demo" href="https://diabetes-risk-predictor.vercel.app/" target="_blank" rel="noopener noreferrer">Demo</a>
-            <a class="btn btn--source" href="https://github.com/KidCoderT/DiabetesRiskPredictor" target="_blank" rel="noopener noreferrer">Source</a>
-          </div>
-        </article>
+          <article class="card">
+            <img class="card__shot" src="assets/diabetes.png" alt="Diabetes Risk Predictor home page" width="1280" height="800" loading="lazy" />
+            <div class="card__body">
+              <h3 class="card__name">Diabetes Risk Predictor</h3>
+              <p class="card__desc">Built for the Global Innovation Field Trip: a classifier trained on 70,692 CDC survey responses (BRFSS 2015 health indicators) that screens separately for prediabetes and type 2 diabetes, after comparing logistic regression, random forest, XGBoost and LightGBM in the notebook. FastAPI serves the model, a Next.js questionnaire collects the 21 indicators, and every result carries a plain "see a doctor" caveat.</p>
+              <div class="tags">
+                <span class="tag">FastAPI</span><span class="tag">Next.js</span><span class="tag">scikit-learn</span><span class="tag">Jupyter</span>
+              </div>
+              <div class="card__actions">
+                <a class="btn btn--demo" href="https://diabetes-risk-predictor.vercel.app/" target="_blank" rel="noopener noreferrer">Demo</a>
+                <a class="btn btn--source" href="https://github.com/KidCoderT/DiabetesRiskPredictor" target="_blank" rel="noopener noreferrer">Source</a>
+              </div>
+            </div>
+          </article>
 
-        <article class="card">
-          <div class="card__top">
-            <h3 class="card__name">Bean Count Bot</h3>
-            <span class="tag">Python</span>
-          </div>
-          <p class="card__desc">A Telegram bot that logs your expenses in real time — just type "purse 5.2" and it records the cost, no form filling required.</p>
-          <div class="card__actions">
-            <a class="btn btn--demo" href="https://beancounterbot.vercel.app/" target="_blank" rel="noopener noreferrer">Demo</a>
-            <a class="btn btn--source" href="https://github.com/KidCoderT/beancounter" target="_blank" rel="noopener noreferrer">Source</a>
-          </div>
-        </article>
+          <article class="card card--wide">
+            <img class="card__shot" src="assets/biryani.png" alt="Biryani Battery Reminder product site" width="1280" height="800" loading="lazy" />
+            <div class="card__body">
+              <h3 class="card__name">Biryani Battery Reminder</h3>
+              <p class="card__desc">A Windows utility that nags at the right moments: unplug near full, plug in when low, at thresholds you set. It switches to Power Saver on its own at low charge and restores your plan once charging, shows battery health against the original design capacity, follows the system light or dark theme, and lives in the tray. Packaged with Inno Setup, fully offline, AGPL.</p>
+              <div class="tags">
+                <span class="tag">Python</span><span class="tag">ttkbootstrap</span><span class="tag">Windows API</span><span class="tag">Inno Setup</span>
+              </div>
+              <div class="card__actions">
+                <a class="btn btn--demo" href="https://biryani-battery-reminder.vercel.app/" target="_blank" rel="noopener noreferrer">Site</a>
+                <a class="btn btn--source" href="https://github.com/KidCoderT/biryani-battery-reminder" target="_blank" rel="noopener noreferrer">Source</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
 
-        <article class="card">
-          <div class="card__top">
-            <h3 class="card__name">checkers-ai.py</h3>
-            <span class="tag">Python</span>
-          </div>
-          <p class="card__desc">A playable checkers (draughts) game with a built-in AI opponent, written in Pygame with particle effects and a modular codebase.</p>
-          <div class="card__actions">
-            <a class="btn btn--source" href="https://github.com/KidCoderT/checkers-ai.py" target="_blank" rel="noopener noreferrer">Source</a>
-          </div>
-        </article>
-      </div>
+      <section class="section">
+        <h2>On GitHub</h2>
+        <div class="projects__grid">
+          <article class="card">
+            <div class="card__body">
+              <h3 class="card__name">Vision-controlled robot car</h3>
+              <p class="card__desc">A four-day build at IISc that ended in a two-wheel robot steered by a camera. MediaPipe hand gestures and YOLO detections on a laptop become single-word UDP commands to an ESP8266, with per-wheel PWM calibration through a web dashboard because real wheels never match. Along the way: a Node.js MQTT broker with auth, captive-portal WiFi setup, and a YOLO v8 versus v11 size-and-speed benchmark.</p>
+              <div class="tags">
+                <span class="tag">ESP8266</span><span class="tag">Arduino C++</span><span class="tag">MQTT</span><span class="tag">UDP</span><span class="tag">OpenCV</span><span class="tag">YOLO</span><span class="tag">MediaPipe</span>
+              </div>
+              <div class="card__actions">
+                <a class="btn btn--source" href="https://github.com/KidCoderT/iisc-iot" target="_blank" rel="noopener noreferrer">Source</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card__body">
+              <h3 class="card__name">Slate</h3>
+              <p class="card__desc">Notes, shared simply. A markdown notes app for iOS, Android and web where sharing a note takes two taps. Clerk for auth, Supabase for sync with Edge Functions sending the share invites, and EAS build profiles for development, preview and store releases, with over-the-air updates for JavaScript-only changes. In progress.</p>
+              <div class="tags">
+                <span class="tag">Expo</span><span class="tag">React Native</span><span class="tag">Clerk</span><span class="tag">Supabase</span><span class="tag">NativeWind</span>
+              </div>
+              <div class="card__actions">
+                <a class="btn btn--source" href="https://github.com/KidCoderT/slate" target="_blank" rel="noopener noreferrer">Source</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card card--wide">
+            <div class="card__body">
+              <h3 class="card__name">WEEKLONG Challenge</h3>
+              <p class="card__desc">A self-imposed sprint to get momentum back: seventeen Pygame and Pyglet builds in a week, from Pong and Space Invaders through Game of Life, Langton's Ant and sorting visualisers to Minesweeper and tic-tac-toe with an AI opponent.</p>
+              <div class="tags">
+                <span class="tag">Python</span><span class="tag">Pygame</span><span class="tag">Pyglet</span>
+              </div>
+              <div class="card__actions">
+                <a class="btn btn--source" href="https://github.com/KidCoderT/WEEKLONG-CHALLENGE" target="_blank" rel="noopener noreferrer">Source</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
 
       <a class="projects__more" href="https://github.com/KidCoderT?tab=repositories" target="_blank" rel="noopener noreferrer">
-        View all repositories on GitHub →
+        Everything else is on GitHub
       </a>
     </main>
 
@@ -111,6 +157,8 @@
         <a href="https://github.com/KidCoderT" target="_blank" rel="noopener noreferrer">GitHub</a>
         &nbsp;·&nbsp;
         <a href="https://www.linkedin.com/in/tejas-sunil/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        &nbsp;·&nbsp;
+        <a href="mailto:tejas.sunil@u.nus.edu">Email</a>
       </span>
     </footer>
 
